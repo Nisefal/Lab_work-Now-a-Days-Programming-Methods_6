@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="Computing_eguipment">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Computing_eguipment)">
+        <MappingFragment StoreEntitySet="Computing_eguipment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="computing_power" ColumnName="computing_power" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CE_user">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.CE_user)">
+        <MappingFragment StoreEntitySet="CE_user">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="position" ColumnName="position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Computing_eguipmentCE_user" TypeName="Model1.Computing_eguipmentCE_user" StoreEntitySet="Computing_eguipmentCE_user">
+      <EndProperty Name="Computing_eguipment">
+        <ScalarProperty Name="Id" ColumnName="Computing_eguipment_Id" />
+      </EndProperty>
+      <EndProperty Name="CE_user">
+        <ScalarProperty Name="Id" ColumnName="CE_user_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

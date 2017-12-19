@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CE_user">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="position" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Computing_eguipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="price" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="computing_power" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Computing_eguipmentCE_user">
+    <Key>
+      <PropertyRef Name="Computing_eguipment_Id" />
+      <PropertyRef Name="CE_user_Id" />
+    </Key>
+    <Property Name="Computing_eguipment_Id" Type="int" Nullable="false" />
+    <Property Name="CE_user_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Computing_eguipmentCE_user_CE_user">
+    <End Role="CE_user" Type="Self.CE_user" Multiplicity="1" />
+    <End Role="Computing_eguipmentCE_user" Type="Self.Computing_eguipmentCE_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CE_user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Computing_eguipmentCE_user">
+        <PropertyRef Name="CE_user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Computing_eguipmentCE_user_Computing_eguipment">
+    <End Role="Computing_eguipment" Type="Self.Computing_eguipment" Multiplicity="1" />
+    <End Role="Computing_eguipmentCE_user" Type="Self.Computing_eguipmentCE_user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Computing_eguipment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Computing_eguipmentCE_user">
+        <PropertyRef Name="Computing_eguipment_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="CE_user" EntityType="Self.CE_user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Computing_eguipment" EntityType="Self.Computing_eguipment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Computing_eguipmentCE_user" EntityType="Self.Computing_eguipmentCE_user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Computing_eguipmentCE_user_CE_user" Association="Self.FK_Computing_eguipmentCE_user_CE_user">
+      <End Role="CE_user" EntitySet="CE_user" />
+      <End Role="Computing_eguipmentCE_user" EntitySet="Computing_eguipmentCE_user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Computing_eguipmentCE_user_Computing_eguipment" Association="Self.FK_Computing_eguipmentCE_user_Computing_eguipment">
+      <End Role="Computing_eguipment" EntitySet="Computing_eguipment" />
+      <End Role="Computing_eguipmentCE_user" EntitySet="Computing_eguipmentCE_user" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

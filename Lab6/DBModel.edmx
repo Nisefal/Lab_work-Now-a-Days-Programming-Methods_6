@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CE_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="surname" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="position" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Computing_eguipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="price" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="computing_power" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Computing_eguipmentCE_user">
+          <Key>
+            <PropertyRef Name="Computing_eguipment_Id" />
+            <PropertyRef Name="CE_user_Id" />
+          </Key>
+          <Property Name="Computing_eguipment_Id" Type="int" Nullable="false" />
+          <Property Name="CE_user_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Computing_eguipmentCE_user_CE_user">
+          <End Role="CE_user" Type="Self.CE_user" Multiplicity="1" />
+          <End Role="Computing_eguipmentCE_user" Type="Self.Computing_eguipmentCE_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CE_user">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Computing_eguipmentCE_user">
+              <PropertyRef Name="CE_user_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computing_eguipmentCE_user_Computing_eguipment">
+          <End Role="Computing_eguipment" Type="Self.Computing_eguipment" Multiplicity="1" />
+          <End Role="Computing_eguipmentCE_user" Type="Self.Computing_eguipmentCE_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Computing_eguipment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Computing_eguipmentCE_user">
+              <PropertyRef Name="Computing_eguipment_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Model1StoreContainer">
+          <EntitySet Name="CE_user" EntityType="Self.CE_user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Computing_eguipment" EntityType="Self.Computing_eguipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Computing_eguipmentCE_user" EntityType="Self.Computing_eguipmentCE_user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Computing_eguipmentCE_user_CE_user" Association="Self.FK_Computing_eguipmentCE_user_CE_user">
+            <End Role="CE_user" EntitySet="CE_user" />
+            <End Role="Computing_eguipmentCE_user" EntitySet="Computing_eguipmentCE_user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computing_eguipmentCE_user_Computing_eguipment" Association="Self.FK_Computing_eguipmentCE_user_Computing_eguipment">
+            <End Role="Computing_eguipment" EntitySet="Computing_eguipment" />
+            <End Role="Computing_eguipmentCE_user" EntitySet="Computing_eguipmentCE_user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Computing_eguipment" EntityType="Model1.Computing_eguipment" />
+          <EntitySet Name="CE_user" EntityType="Model1.CE_user" />
+          <AssociationSet Name="Computing_eguipmentCE_user" Association="Model1.Computing_eguipmentCE_user">
+            <End Role="Computing_eguipment" EntitySet="Computing_eguipment" />
+            <End Role="CE_user" EntitySet="CE_user" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Computing_eguipment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="price" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="computing_power" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="CE_user" Relationship="Model1.Computing_eguipmentCE_user" FromRole="Computing_eguipment" ToRole="CE_user" />
+        </EntityType>
+        <EntityType Name="CE_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="surname" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="position" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <Association Name="Computing_eguipmentCE_user">
+          <End Type="Model1.Computing_eguipment" Role="Computing_eguipment" Multiplicity="*" />
+          <End Type="Model1.CE_user" Role="CE_user" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="Computing_eguipment">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Computing_eguipment)">
+        <MappingFragment StoreEntitySet="Computing_eguipment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="computing_power" ColumnName="computing_power" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CE_user">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.CE_user)">
+        <MappingFragment StoreEntitySet="CE_user">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="position" ColumnName="position" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Computing_eguipmentCE_user" TypeName="Model1.Computing_eguipmentCE_user" StoreEntitySet="Computing_eguipmentCE_user">
+      <EndProperty Name="Computing_eguipment">
+        <ScalarProperty Name="Id" ColumnName="Computing_eguipment_Id" />
+      </EndProperty>
+      <EndProperty Name="CE_user">
+        <ScalarProperty Name="Id" ColumnName="CE_user_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

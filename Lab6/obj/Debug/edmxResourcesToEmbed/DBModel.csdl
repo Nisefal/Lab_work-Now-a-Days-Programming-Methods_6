@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Computing_eguipment" EntityType="Model1.Computing_eguipment" />
+    <EntitySet Name="CE_user" EntityType="Model1.CE_user" />
+    <AssociationSet Name="Computing_eguipmentCE_user" Association="Model1.Computing_eguipmentCE_user">
+      <End Role="Computing_eguipment" EntitySet="Computing_eguipment" />
+      <End Role="CE_user" EntitySet="CE_user" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Computing_eguipment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="price" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="computing_power" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="CE_user" Relationship="Model1.Computing_eguipmentCE_user" FromRole="Computing_eguipment" ToRole="CE_user" />
+  </EntityType>
+  <EntityType Name="CE_user">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="surname" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="position" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <Association Name="Computing_eguipmentCE_user">
+    <End Type="Model1.Computing_eguipment" Role="Computing_eguipment" Multiplicity="*" />
+    <End Type="Model1.CE_user" Role="CE_user" Multiplicity="*" />
+  </Association>
+</Schema>
